@@ -13,16 +13,19 @@ def get_prefix(bot, message):
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
 startup_cogs = [
-    "cogs.dungeon"
+    "cogs.dungeon",
+    "cogs.error",
+    "cogs.promo",
+    "cogs.manage"
 ]
 
-bot = commands.Bot(command_prefix=get_prefix, description="your mom")
+bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 
 @bot.event
 async def on_ready():
     print(f"Logged in as: {bot.user.name} ({bot.user.id})")
 
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game("ily HexF <3"))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game("https://github.com/Turbotylar/Minipyun"))
 
 if __name__ == "__main__":
     for ext in startup_cogs:
