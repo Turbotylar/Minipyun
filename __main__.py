@@ -16,7 +16,8 @@ startup_cogs = [
     "cogs.dungeon",
     "cogs.error",
     "cogs.promo",
-    "cogs.manage"
+    "cogs.manage",
+    "cogs.music"
 ]
 
 bot = commands.Bot(command_prefix=get_prefix, intents=intents)
@@ -24,7 +25,6 @@ bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 @bot.event
 async def on_ready():
     print(f"Logged in as: {bot.user.name} ({bot.user.id})")
-    bot.load_extension("cogs.music")
 
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("https://github.com/Turbotylar/Minipyun"))
 
