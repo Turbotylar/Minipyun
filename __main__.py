@@ -17,7 +17,8 @@ startup_cogs = [
     "cogs.error",
     "cogs.promo",
     "cogs.manage",
-    "cogs.music"
+    "cogs.music",
+    "cogs.misc"
 ]
 
 bot = commands.Bot(command_prefix=get_prefix, intents=intents)
