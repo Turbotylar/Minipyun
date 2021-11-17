@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import datetime
+import pytz
 from youtube_search import YoutubeSearch
 import requests
 
@@ -13,11 +14,11 @@ class Misc(commands.Cog, name="Miscellaneous"):
         breif="Miscellaneous commands",
         description="Miscellaneous commands"
         )
-    #>today returns current day in NZT
-    async def today(self, ctx):        
-        day = datetime.date.today()
-        await ctx.send(day.strftime("Time in New Zealand is:\n%A %B %d %Y"))
-    
+    #>today returns current time and day
+    async def today(self, ctx, arg):        
+        day = datetime.datetime.now(pytz.timezone(str(arg)))
+        await ctx.send(day.strftime("%A %B %d %Y \nTime: %H:%M:%S"))
+
     @commands.command(
         name="inspire",
         breif="Ai generated inspiration",
@@ -28,6 +29,11 @@ class Misc(commands.Cog, name="Miscellaneous"):
         f = requests.get(link)
         imgurl = f.text
         await ctx.send(imgurl)
+
+    @commands.Cog.listener()
+    async def on_message(self, ctx):
+        if ctx.content.startswith("!!!"):
+            await ctx.channel.send("That thing that OSG does out of the blue.")
 
 def setup(bot):
     bot.add_cog(Misc(bot))

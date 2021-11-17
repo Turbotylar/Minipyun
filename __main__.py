@@ -18,7 +18,8 @@ startup_cogs = [
     "cogs.promo",
     "cogs.manage",
     "cogs.music",
-    "cogs.misc"
+    "cogs.misc",
+    "cogs.listen"
 ]
 
 bot = commands.Bot(command_prefix=get_prefix, intents=intents)
